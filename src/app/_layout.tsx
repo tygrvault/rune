@@ -2,7 +2,9 @@ import { playbackService } from "@/constants/playbackService"
 import { useLogPlayerState } from "@/hooks/log-player-state"
 import { useSetupPlayer } from "@/hooks/setup-player"
 import { SplashScreen, Stack } from "expo-router"
+import { StatusBar } from "expo-status-bar"
 import { useCallback } from "react"
+import { SafeAreaProvider } from "react-native-safe-area-context"
 import TrackPlayer from "react-native-track-player"
 
 SplashScreen.preventAutoHideAsync()
@@ -18,8 +20,11 @@ export default function App() {
 	useLogPlayerState();
 
 	return (
-		<Stack>
-			<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-		</Stack>
+		<SafeAreaProvider>
+			<Stack>
+				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+			</Stack>
+			<StatusBar style="auto" />
+		</SafeAreaProvider>
 	)
 }
